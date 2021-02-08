@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Lista de Tarefas
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openModal(false);">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-list lines="full">
+
+    <ion-item *ngFor="let item of (listJobs)">
+      <ion-buttons slot="start">
+        <ion-button (click)="changeStatus(item);" *ngIf="item.status" class="status" color="warning">
+          <ion-icon name="checkmark-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+  
+        <ion-button (click)="changeStatus(item);" *ngIf="!item.status" class="status" color="success">
+          <ion-icon name="time-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      
+      <ion-label class="ion-text-wrap">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description }}</p>
+      </ion-label>
+      
+      <ion-buttons slot="end">
+        <ion-button (click)="openModal(item);">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button (click)="delete(item.id);" color="danger">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

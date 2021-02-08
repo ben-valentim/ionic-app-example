@@ -1,0 +1,10 @@
+{
+  "name": "base",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}
